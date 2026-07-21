@@ -1,120 +1,146 @@
-# 📖 Dictionary API
+# Dictionary API
 
-A modular **FastAPI-based REST API** to fetch word meanings and synonyms using external APIs like DictionaryAPI and Datamuse.
-
----
-
-## 🚀 Features
-
-* Fetch word meanings
-* Retrieve synonyms
-* FastAPI interactive docs (Swagger UI)
-* Clean architecture (routes, services, utils)
-* Scalable and easy to extend
+A modular REST API built with FastAPI for retrieving word definitions and synonyms. The application integrates with DictionaryAPI and Datamuse to provide accurate lexical information through a simple and well-structured API.
 
 ---
 
-## 📸 Demo / Preview
+## Features
 
-![Demo Screenshot](assets/demo.png)
+- Retrieve word definitions
+- Fetch synonyms for a given word
+- Interactive API documentation with Swagger UI
+- Modular project structure for easy maintenance
+- Clean separation of routes, services, and utilities
+- Easily extensible for additional language features
 
 ---
 
-## 🧪 Interactive API Docs
+## Tech Stack
 
-FastAPI provides built-in docs:
+- FastAPI
+- Uvicorn
+- Requests
+- DictionaryAPI
+- Datamuse API
 
-👉 http://127.0.0.1:8000/docs
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
-```id="v7f7wb"
+```text
 dictionary-api/
 │
 ├── app/
-│   ├── routes/        # API endpoints
-│   ├── services/      # Business logic
-│   ├── utils/         # External API calls
-│   └── config/        # Settings
+│   ├── config/         # Application configuration
+│   ├── routes/         # API endpoints
+│   ├── services/       # Business logic
+│   └── utils/          # External API integrations
 │
-├── tests/             # Unit tests
-├── run.py             # Entry point
+├── tests/              # Unit tests
+├── run.py              # Application entry point
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## Getting Started
 
-### 1. Clone the repository
+### Clone the Repository
 
-```bash id="eq1njf"
+```bash
 git clone https://github.com/gopal092003/Dictionary-API.git
+
 cd Dictionary-API
 ```
 
----
+### Create a Virtual Environment
 
-### 2. Create virtual environment (recommended)
-
-```bash id="e4xyku"
+```bash
 python -m venv venv
-venv\Scripts\activate      # Windows
 ```
 
----
+Activate the environment:
 
-### 3. Install dependencies
+**Windows**
 
-```bash id="a9l1kk"
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-## ▶️ Run the Application
+## Running the Application
 
-```bash id="2x6r5o"
+Start the development server:
+
+```bash
 python run.py
 ```
 
-Server will start at:
+The API will be available at:
 
-```id="4bgn0f"
+```
 http://127.0.0.1:8000
 ```
 
 ---
 
-## 🔌 API Endpoints
+## Interactive API Documentation
 
-### ➤ Health Check
+FastAPI automatically generates API documentation.
 
-```id="4x1j6p"
+Swagger UI:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+ReDoc:
+
+```
+http://127.0.0.1:8000/redoc
+```
+
+---
+
+## API Endpoints
+
+### Health Check
+
+```http
 GET /
 ```
 
----
+Returns the application status.
 
-### ➤ Define a Word
+### Get Word Information
 
-```id="8w41uh"
+```http
 GET /define/{word}
 ```
 
-**Example:**
+Example:
 
-```id="7dx1k5"
-/define/apple
+```http
+GET /define/apple
 ```
 
----
+### Example Response
 
-## 📊 Example Response
-
-```json id="m3l98m"
+```json
 {
   "word": "apple",
   "meanings": [
@@ -129,69 +155,65 @@ GET /define/{word}
 
 ---
 
-## 📊 API Workflow
+## How It Works
 
-![Architecture](assets/architecture.png)
-
----
-
-## 🌐 External APIs Used
-
-* Dictionary API (dictionaryapi.dev)
-* Datamuse API (for synonyms)
+1. A client sends a request with a word.
+2. The API retrieves definitions from DictionaryAPI.
+3. Synonyms are fetched from Datamuse.
+4. The results are combined into a single response and returned to the client.
 
 ---
 
-## ⚠️ Error Handling
+## External Services
 
-| Status Code | Description           |
-| ----------- | --------------------- |
-| 404         | Word not found        |
-| 500         | Internal server error |
+- DictionaryAPI – Provides word definitions and meanings.
+- Datamuse API – Provides synonyms and related words.
 
 ---
 
-## 🧪 Running Tests
+## Error Handling
 
-```bash id="u1ax4r"
+| Status Code | Description |
+|-------------|-------------|
+| 200 | Request completed successfully |
+| 404 | Word not found |
+| 500 | Internal server error |
+
+---
+
+## Running Tests
+
+Run the test suite using:
+
+```bash
 pytest
 ```
 
-*(or use unittest if configured)*
+If the project is configured with `unittest`, those tests can be executed as well.
 
 ---
 
-## 📦 Dependencies
+## Future Improvements
 
-* FastAPI
-* Uvicorn
-* Requests
-
----
-
-## 🔮 Future Improvements
-
-* Add antonyms endpoint
-* Add phonetics and pronunciation
-* Add caching (Redis / in-memory)
-* Deploy to cloud (Render / AWS)
+- Support antonyms
+- Add pronunciation and phonetics
+- Cache frequently requested words
+- Support multiple dictionaries
+- Rate limiting
+- Docker support
+- Cloud deployment
+- API authentication
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Gopal Gupta**
 
-* GitHub: https://github.com/gopal092003
+GitHub: https://github.com/gopal092003
 
 ---
 
-## ⭐ Support
+## License
 
-If you like this project:
-
-* ⭐ Star the repo
-* 🍴 Fork it
-* 🚀 Use it in your own apps
-
----
+This project is licensed under the MIT License.
