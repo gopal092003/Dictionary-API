@@ -27,7 +27,7 @@ A modular REST API built with FastAPI for retrieving word definitions and synony
 
 ## Project Structure
 
-```text
+```
 dictionary-api/
 │
 ├── app/
@@ -48,7 +48,7 @@ dictionary-api/
 
 ### Clone the Repository
 
-```bash
+```
 git clone https://github.com/gopal092003/Dictionary-API.git
 
 cd Dictionary-API
@@ -56,7 +56,7 @@ cd Dictionary-API
 
 ### Create a Virtual Environment
 
-```bash
+```
 python -m venv venv
 ```
 
@@ -64,19 +64,19 @@ Activate the environment:
 
 **Windows**
 
-```bash
+```
 venv\Scripts\activate
 ```
 
 **Linux / macOS**
 
-```bash
+```
 source venv/bin/activate
 ```
 
 ### Install Dependencies
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -86,7 +86,7 @@ pip install -r requirements.txt
 
 Start the development server:
 
-```bash
+```
 python run.py
 ```
 
@@ -185,7 +185,7 @@ GET /define/apple
 
 Run the test suite using:
 
-```bash
+```
 pytest
 ```
 
