@@ -1,29 +1,41 @@
-import requests
-from app.config.settings import DICTIONARY_API, SYNONYM_API
+"""Compatibility helpers for callers of the original API client module."""
 
-def fetch_meanings(word: str):
-    response = requests.get(DICTIONARY_API + word)
+import requests  # re-exported so existing request mocks remain compatible
 
-    if response.status_code != 200:
-        raise ValueError(f"Word '{word}' not found")
+from app.config.settings import DATAMUSE_API, DICTIONARY_API
+from app.providers.datamuse import DatamuseProvider
+from app.providers.dictionary_api import DictionaryApiProvider
+from app.providers.http import ProviderError, WordNotFound
 
-    data = response.json()
-    meanings = []
+__all__ = [
+    "requests",
+    "DATAMUSE_API",
+    "DICTIONARY_API",
+    "ProviderError",
+    "WordNotFound",
+    "fetch_antonyms",
+    "fetch_dictionary_entry",
+    "fetch_meanings",
+    "fetch_phonetics",
+    "fetch_synonyms",
+]
 
-    try:
-        for meaning in data[0]["meanings"]:
-            for definition in meaning["definitions"]:
-                meanings.append(definition["definition"])
-    except Exception:
-        meanings.append("No meanings found")
 
-    return meanings
+def fetch_dictionary_entry(word: str) -> dict:
+    return DictionaryApiProvider().lookup(word)
 
 
-def fetch_synonyms(word: str):
-    response = requests.get(SYNONYM_API + word)
+def fetch_meanings(word: str) -> list[str]:
+    return DictionaryApiProvider().lookup(word)["meanings"]
 
-    if response.status_code != 200:
-        return []
 
-    return [item["word"] for item in response.json()]
+def fetch_phonetics(word: str) -> list[dict]:
+    return DictionaryApiProvider().lookup(word)["phonetics"]
+
+
+def fetch_synonyms(word: str) -> list[str]:
+    return DatamuseProvider().relation(word, "syn")
+
+
+def fetch_antonyms(word: str) -> list[str]:
+    return DatamuseProvider().relation(word, "ant")
