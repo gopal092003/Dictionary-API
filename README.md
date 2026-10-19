@@ -2,6 +2,14 @@
 
 A local-first English dictionary service, Python library, and CLI. DictionaryAPI.dev supplies definitions and pronunciation metadata; Datamuse supplies word relationships, rhymes, search, and suggestions. The application runs on a developer's machine and does not require a hosted backend or paid service. A local word corpus and offline dictionary are optional and are not bundled.
 
+## Demo
+
+![Dictionary API demo](assets/demo.png)
+
+## Architecture
+
+![Dictionary API architecture](assets/architecture.png)
+
 ## Install and run
 
 Python 3.10 or newer:
